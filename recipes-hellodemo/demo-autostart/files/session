@@ -1,0 +1,26 @@
+#!/bin/sh
+
+. /etc/formfactor/config
+
+if [ "$HAVE_TOUCHSCREEN" = "1" ]; then
+    SHOWCURSOR="no"
+else
+    SHOWCURSOR="yes"
+fi
+
+matchbox-desktop &
+
+# We insert the app we want to start on sato bootup here. Since this
+# demo is running a console application, we run it via an xterm with
+# the -e option and keep the xterm window open with the -hold option.
+xterm -hold -e hello &
+
+# Lines containing feature-[foo] are removed at build time if the machine
+# doesn't have the feature "foo".
+
+START_APPLETS=showdesktop,windowselector
+END_APPLETS=clock,battery,systray,startup-notify,notify
+
+matchbox-panel --titlebar --start-applets $START_APPLETS --end-applets $END_APPLETS &
+
+exec matchbox-window-manager -theme Sato -use_desktop_mode decorated -use_cursor $SHOWCURSOR $@
