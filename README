@@ -1,0 +1,35 @@
+meta-hellodemo
+==============
+
+Yocto Project meta-hellodemo Demonstration Layer
+
+Dependencies: This layer was written and tested with the Yocto Project
+"Denzil" release, 7.0.1.
+
+This layer is a simple example of how you might create a Yocto Project
+layer to launch a simple console application when X boots up.
+
+The hellodemo-image image recipe is derived from our core-image-sato
+reference image, and includes the GNU Hello program, as well as xterm
+and its associated dependencies. I also included psplash to give us
+a pleasant looking boot-up screen.
+
+Note that the demo application is launched via the matchbox session
+file, which we deploy a customized version of into root's home
+directory. There are potentially other ways you can launch an
+application at startup depending on your goals - this method was
+chosen for its simplicity.
+
+A note about security - a "real" embedded product should not run its
+main GUI or application software as root, but rather as an unprivileged
+user. So don't do that! This layer is for educational purposes only.
+
+Maintenance
+-----------
+
+Layer maintainer: Scott Garman <scott.a.garman@intel.com>
+
+License
+-------
+
+This layer is licensed under the MIT license.
